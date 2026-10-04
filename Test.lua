@@ -13,38 +13,37 @@ Assets.Parent = ReplicatedStorage
  
 local Scanner = Assets.CrystalScanner
 
--- ORANGE TABLET W HALOWEEN UPD
+-- ORANGE TABLET
 local MainOrange = Color3.fromRGB(255, 115, 25)
 local DarkOrange = Color3.fromRGB(140, 45, 10)
 local GlowOrange = Color3.fromRGB(255, 145, 35)
 
+-- Recolor the scanner casing
 for _, Object in ipairs(Scanner:GetDescendants()) do
 	if Object:IsA("BasePart") then
-		Object.Color = MainOrange
+		if Object.Name ~= "Screen" then
+			Object.Color = MainOrange
+		end
 	end
 end
 
+-- Recolor the screen housing/light
 local Handle = Scanner:FindFirstChild("Handle")
 
 if Handle then
 	local Screen = Handle:FindFirstChild("Screen")
 
 	if Screen then
-		for _, Object in ipairs(Screen:GetDescendants()) do
-			if Object:IsA("BasePart") then
-				Object.Color = DarkOrange
-			end
-		end
-
 		local SurfaceLight = Screen:FindFirstChildWhichIsA("SurfaceLight")
+
 		if SurfaceLight then
 			SurfaceLight.Color = GlowOrange
 		end
 	end
 end
 
-local UI = Assets.ScreenUICrystal 
-local OffS = UI.OffScreen 
+local UI = Assets.ScreenUICrystal
+local OffS = UI.OffScreen
 
 local ItemsToRemove = {}
 local Stars = {}
